@@ -20,15 +20,12 @@ public class Algo {
 
         commande[mots_cle[0].charAt(0)][0] = 0;
 
-        for (i = 0; i < mots_cle[j].length(); i++)
-            for (j = 1; j < mots_cle.length; j++) {
-                if (mots_cle[j].charAt(i) != mots_cle[j - 1].charAt()) {
-                    commande[mots_cle[j].charAt(0)][0] = etat;
-                    etat++;
-                }
+        for (i = 1; i < mots_cle.length; i++) {
+            if (mots_cle[j].charAt(0) != mots_cle[i - 1].charAt(0)) {
+                commande[mots_cle[i].charAt(0)][0] = etat;
+                etat++;
             }
-    }
-
+        }
     }
 
     public  static void main(String[] args){
