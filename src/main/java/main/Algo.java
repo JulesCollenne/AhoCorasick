@@ -3,19 +3,42 @@ package main;
 import java.util.*;
 
 public class Algo {
-    private String[] mots_cle;
-    private int[][] commande;
-    int[] echec;
+    private static int maxState = 500;
+    private static int maxChar = 100;
 
-    public void tri_alphabet()
-    {
-        Arrays.sort(mots_cle);
+    private String[] mots_cles;
+    private static int[][] commande = new int[maxState][maxChar];
+    private String output[] = new String[maxState];
+    private int echec[] = new int[maxState];
+
+    /**
+     * @param args mots_clés
+     */
+    Algo(String[] args){
+        mots_cles = args;
     }
 
     /**
+     *
+     * @param imot numéro du mot clé
+     * @param ilettre numéroe de la lettre du mot i
+     * @return vrai si etat existe faux sinon
+     *//*
+    public boolean EtatExiste(int imot, int ilettre){
+        int etat = 0;
+        for(int i=0;i<26;i++){
+            if(i == NumLettre(mots_cles[imot][i]))
+                commande[etat][i];
+        }
+        return true;
+    }*/
+
+    /**
      * Fonction "Goto" qui créé l'automate à partir des mots clés
+     * Version professeur
      */
-    public void creer_etats() {
+/*
+    public void Creer_Etats() {
         int from = 0;
         int to = 1;
         int i = 0,j = 0;
@@ -33,6 +56,73 @@ public class Algo {
             from++;
         }
     }
+*/
+
+    /**
+     * Version originale
+     */
+
+    /**
+     *
+     * @param etat
+     * @return
+     */
+    public String output(int etat){
+
+        return null;
+    }
+
+    /**
+     * Remplis la matrice commande de sorte à créé les aretes
+     * de l'automate utilisé lors de la découverte du mot "mot"
+     * @param mot que l'on ajoute à l'automate
+     * @param nouvelEtat : Dernier etat créé
+     * @return
+     */
+    public int enter(String mot, int nouvelEtat){
+        int etat = 0, j = 1;
+
+        while(commande[etat][mot.charAt(j)] != -1){
+            etat = commande[etat][mot.charAt(j)];
+            j++;
+        }
+
+        for(int p = j; p < mot.length(); p++){
+            nouvelEtat++;
+            commande[etat][mot.charAt(p)] = nouvelEtat;
+            etat = nouvelEtat;
+        }
+        output[etat] = mot;
+        return nouvelEtat;
+    }
+
+    /**
+     * Créé les etats de l'automate à partir des mots clés.
+     */
+    public void Creer_Etats(){
+        int nouvelEtat = 0;
+        for(int i = 0; i < mots_cles.length; i++){
+            nouvelEtat = enter(mots_cles[i],nouvelEtat);
+        }
+        for(int i = 0; i < maxChar; i++){
+            if(commande[0][i] == -1)
+                commande[0][i] = 0;
+        }
+    }
+
+    public void initialise(int tab[]){
+        for(int i = 0; i < tab.length; i++){
+            tab[i] = -1;
+        }
+    }
+
+    public boolean isEmpty(int tab[]){
+        for(int i=0;i<tab.length;i++){
+            if(tab[i] != -1)
+                return false;
+        }
+        return true;
+    }
 
     /**
      * La fonction "failure" qui renvoie l'etat dans lequel aller si jamais l'etat
@@ -41,6 +131,20 @@ public class Algo {
      * @return le prochain etat
      */
     public int Fail(int etat){
+        int queue[] = new int[maxState]; //vide
+        initialise(queue);
+        int etatQueue = 0;
+
+        for(int i = 0; i < maxChar; i++){
+            if(commande[0][i] != 0){
+                queue[etatQueue] = i;
+                etatQueue++;
+                echec[commande[0][i]] = 0;
+            }
+        }
+        while(!isEmpty(queue)){
+
+        }
         return 0;
     }
 
@@ -50,7 +154,7 @@ public class Algo {
      * @return le mot clé trouvé ou null
      */
     public String Sortie(int etat){
-        return mots_cle[0];
+        return mots_cles[0];
     }
 
     /**
@@ -60,11 +164,11 @@ public class Algo {
      * @param car
      * @return
      */
-    public int Goto(int etat, char car){
+    private int Goto(int etat, char car){
         return -1;
     }
 
-    public void AfficheSortie(int etat, int i){
+    private void AfficheSortie(int etat, int i){
         System.out.println(i + " " + Sortie(etat));
     }
 
@@ -81,12 +185,11 @@ public class Algo {
         }
     }
 
-    public  static void main(String[] args){
-        Algo algo = new Algo();
-        algo.mots_cle = args;
-        Arrays.sort(algo.mots_cle);
-        for(int i=0;i<algo.mots_cle.length;i++) {
-            System.out.println(algo.mots_cle[i] + '\n');
+    public void FaireAlgo(){
+        Creer_Etats();
+
+        for(int i=0;i<mots_cles.length;i++) {
+            System.out.println(mots_cles[i] + '\n');
         }
     }
 }
