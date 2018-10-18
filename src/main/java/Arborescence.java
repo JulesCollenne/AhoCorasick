@@ -4,6 +4,7 @@ public class Arborescence {
     static int maxState = 100;
 
     int CommandeTab[][]= new int [maxState][maxChar];
+    String output[] = new String[maxState];
 
     public void initialisation_tab(int tab[][]) {
 
@@ -14,52 +15,41 @@ public class Arborescence {
         }
     }
 
-
-
-    public void CreerArbo( String [] Mots)
-    {
-        int num_etat = 1 ;
-
-        this.initialisation_tab(CommandeTab);
-
-            for(int i =0;i<Mots.length;i++) {
-            String mot = Mots[i];
-            int etatcourant=0;
-
-                for(int j=0;j<mot.length();j++){
-                    int caractere = mot.charAt(j);
-
-                    System.out.println(" recuperation de " + (char)caractere);
-                    if (CommandeTab[etatcourant][caractere] == -1) {
-                        CommandeTab[etatcourant][caractere] = num_etat++;
-                        System.out.println("l etat " + num_etat + " a ete rajoute " );
-                        }
-                    etatcourant=CommandeTab[etatcourant][caractere];
-                    }
-
-
-            }
+    public Arborescence(){
+        initialisation_tab(CommandeTab);
     }
 
     public void CreerArbo(String [] Mots){
-        int newstate =0;
+        int newState = 0;
         for(int i=0;i<Mots.length;i++)
-            enter(Mots[i]);
+            newState = enter(Mots[i],newState);
         for(int i =0;i<maxChar;i++){
             if(CommandeTab[0][i]==-1)
                 CommandeTab[0][i]=0;
         }
     }
 
-    public void enter(String Mot){
+    public int enter(String Mot,int newState){
+        int state = 0, i;
+        for(i = 0;i < Mot.length(); i++){
+            if(CommandeTab[state][Mot.charAt(i)] != -1)
+                state = CommandeTab[state][Mot.charAt(i)];
+            else break;
+        }
 
-
+        for(int p = i;p < Mot.length();p++){
+            newState++;
+            CommandeTab[state][Mot.charAt(p)] = newState;
+            state = newState;
+        }
+        output[state] = Mot;
+        return newState;
     }
 
     public void afficherArbo(){
         for(int i=0;i<this.CommandeTab.length;i++){
             for(int j=0;j<this.CommandeTab[i].length;j++){
-                if(CommandeTab[i][j]!=-1)
+                if(CommandeTab[i][j] > 0)
                     System.out.println(i + " " + CommandeTab[i][j] + " " + (char)j + '\n');
             }
         }

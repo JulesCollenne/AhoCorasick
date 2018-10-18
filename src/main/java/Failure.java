@@ -19,9 +19,6 @@ public class Failure  {
     }
 
     public void creer_fail(){
-
-
-
         int state,s;
         for(int i=0;i<arborescence.maxChar;i++) {
             if (arborescence.CommandeTab[0][i] > 0) {
@@ -33,20 +30,18 @@ public class Failure  {
         }
         while(!queue.isEmpty()){
             int r= queue.removeFirst();
-            System.out.println("l'etat suivant est "+r);
+            //System.out.println("l'etat suivant est "+r);
             for(int i=0;i<arborescence.maxChar;i++) {
                 if (arborescence.CommandeTab[r][i] != -1){
                     s = arborescence.CommandeTab[r][i];
                     queue.add(s);
-                    System.out.println("ajout de "+arborescence.CommandeTab[r][i]);
+                    //System.out.println("ajout de "+arborescence.CommandeTab[r][i]);
                     state=fail[r];
-                    System.out.println(state);
                     while(arborescence.CommandeTab[state][i]==-1) {
                         state=fail[state];
                     }
-
-                    fail[arborescence.CommandeTab[r][i]]=arborescence.CommandeTab[state][i];
-
+                    fail[s]=arborescence.CommandeTab[state][i];
+                    //output[s] = output[s] + output[fail[s]]; //TODO
                 }
 
             }
@@ -54,12 +49,11 @@ public class Failure  {
 
 
     }
+
     void afficher_fail(){
-        System.out.println("lol");
         for(int i=0;i<fail.length;i++){
-            System.out.println(" si " + i + " fail , on va dans l'etat  " + fail[i]);
+            if(fail[i] != 0)
+              System.out.println(" si " + i + " fail , on va dans l'etat  " + fail[i]);
         }
     }
-
-
 }
