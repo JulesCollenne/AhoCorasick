@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] entree = {"coup","art","cle","table","cart"};
+        String[] entree = {"coup","arte","cle","table","cart"};
         Arrays.sort(entree);
         Arborescence test = new Arborescence();
         test.CreerArbo(entree);
@@ -15,6 +15,7 @@ public class Main {
         fail.creer_fail();
         fail.afficher_fail();
 
-
+        Lecture lect = new Lecture(test,fail);
+        lect.Lire("Le coup de la cle met le carte sur la table, mais je pense que tart");
     }
 }
