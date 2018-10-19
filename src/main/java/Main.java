@@ -16,6 +16,6 @@ public class Main {
         fail.afficher_fail();
 
         Lecture lect = new Lecture(test,fail);
-        lect.Lecture("Le coup de la cle met le carte sur la table, mais je pense que tart");
+        lect.Lire("Le coup de la cle met le carte sur la table, mais je pense que tart");
     }
 }

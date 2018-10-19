@@ -7,7 +7,7 @@ public class Lecture {
         this.fail = fail;
     }
 
-    public void Lecture(String texte){
+    public void Lire(String texte){
         int etat = 0;
         for(int i=0;i<texte.length();i++){
             while(arbo.CommandeTab[etat][texte.charAt(i)] == -1)
