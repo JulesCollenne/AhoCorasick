@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="AhoCorasick1" />
         <module name="AhoCorasickOriginal" />
+        <module name="AhoCorasickOriginal2" />
       </profile>
     </annotationProcessing>
   </component>

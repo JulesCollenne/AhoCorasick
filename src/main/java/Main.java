@@ -15,7 +15,9 @@ public class Main {
         fail.creer_fail();
         fail.afficher_fail();
 
+        String texte = utils.LisFichier("7germ10.txt");
+
         Lecture lect = new Lecture(test,fail);
-        lect.Lire("Le coup de la cle met le carte sur la table, mais je pense que tart");
+        lect.Lire(texte);
     }
 }

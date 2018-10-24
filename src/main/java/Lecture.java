@@ -13,8 +13,12 @@ public class Lecture {
             while(arbo.CommandeTab[etat][texte.charAt(i)] == -1)
                 etat = fail.fail[etat];
             etat = arbo.CommandeTab[etat][texte.charAt(i)];
-            if(arbo.output[etat] != null)
-                System.out.println("A la position " + i + ", il y a \"" + arbo.output[etat] + "\"");
+            if(arbo.output[etat] != null) {
+                System.out.println("A la position " + i + ", il y a \"" + arbo.output[etat] + "\"\n");
+                for(int j=i-10;j<i+10;j++){
+                    System.out.println(texte.charAt(j));
+                }
+            }
         }
     }
 
