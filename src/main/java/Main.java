@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] entree = {"bonjour"};
+        String[] entree = {"parapluie"};
         Arrays.sort(entree);
         Arborescence test = new Arborescence();
         test.CreerArbo(entree);
@@ -16,7 +16,7 @@ public class Main {
         Failure fail = new Failure(test,queue);
         fail.creer_fail();
         fail.afficher_fail();
-
+        fail.creer_delta();
         String texte = null;
         try {
             texte = utils.readFile("7germ10.txt", StandardCharsets.UTF_8);

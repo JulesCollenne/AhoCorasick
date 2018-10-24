@@ -18,6 +18,10 @@ public class Failure  {
         }
     }
 
+    public boolean isFail(int state, int i){
+        return arborescence.CommandeTab[state][i] == -1;
+    }
+
     public void creer_fail(){
         int state,s;
         for(int i=0;i<arborescence.maxChar;i++) {
@@ -30,30 +34,49 @@ public class Failure  {
         }
         while(!queue.isEmpty()){
             int r= queue.removeFirst();
-            //System.out.println("l'etat suivant est "+r);
             for(int i=0;i<arborescence.maxChar;i++) {
-                if (arborescence.CommandeTab[r][i] != -1){
+                if (!isFail(r,i)){
                     s = arborescence.CommandeTab[r][i];
                     queue.add(s);
-                    //System.out.println("ajout de "+arborescence.CommandeTab[r][i]);
                     state=fail[r];
-                    while(arborescence.CommandeTab[state][i]==-1) {
+                    while(isFail(state,i)) {
                         state=fail[state];
                     }
                     fail[s]=arborescence.CommandeTab[state][i];
-                    //output[s] = output[s] + output[fail[s]]; //TODO
+                    if(arborescence.output[fail[s]] != null)
+                        arborescence.output[s] += " " + arborescence.output[fail[s]];
                 }
 
             }
         }
-
-
     }
 
     void afficher_fail(){
         for(int i=0;i<fail.length;i++){
             if(fail[i] != 0)
               System.out.println(" si " + i + " fail , on va dans l'etat  " + fail[i]);
+        }
+    }
+
+    public void creer_delta(){
+        int state,s;
+        for(int i=0;i<arborescence.maxChar;i++) {
+            if (arborescence.CommandeTab[0][i] > 0) {
+                s = arborescence.CommandeTab[0][i];
+                queue.add(s);
+                System.out.println("ajout de "+s);
+            }
+        }
+        while(!queue.isEmpty()){
+            int r = queue.removeFirst();
+            for(int i=0;i<arborescence.maxChar;i++) {
+                if (arborescence.CommandeTab[r][i] != -1){
+                    s = arborescence.CommandeTab[r][i];
+                    queue.add(s);
+                    if(arborescence.output[fail[s]] != null)
+                        arborescence.output[s] += " " + arborescence.output[fail[s]];
+                }
+            }
         }
     }
 }
