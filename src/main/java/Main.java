@@ -12,7 +12,7 @@ public class Main {
         Arborescence test = new Arborescence();
         test.CreerArbo(entree);
         test.afficherArbo();
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        LinkedList<Integer> queue = new LinkedList<>();
         Failure fail = new Failure(test,queue);
         fail.creer_fail();
         fail.creer_delta();

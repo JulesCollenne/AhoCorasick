@@ -7,10 +7,10 @@ import java.util.LinkedList;
  */
 public class Failure  {
 
-    Arborescence arborescence;
-    LinkedList<Integer> queue;
+    private Arborescence arborescence;
+    private LinkedList<Integer> queue;
 
-    int[] fail= new int[200];
+    private int[] fail= new int[200];
 
     Failure(Arborescence arborescence,LinkedList queue){
         this.arborescence=arborescence;

@@ -1,6 +1,6 @@
 public class Lecture {
-    Arborescence  arbo;
-    Failure fail;
+    private Arborescence  arbo;
+    private Failure fail;
 
     public Lecture(Arborescence arbo, Failure fail) {
         this.arbo = arbo;
