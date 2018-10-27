@@ -5,6 +5,13 @@ import java.nio.file.Paths;
 
 public class utils {
 
+    /**
+     *
+     * @param path nom du fichier
+     * @param encoding encodage du fichier
+     * @return le texte dont le path est "path" sous forme d'une String
+     * @throws IOException
+     */
     static String readFile(String path, Charset encoding)
             throws IOException
     {

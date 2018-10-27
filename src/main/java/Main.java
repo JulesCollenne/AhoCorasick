@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] entree = {"parapluie"};
+        String[] entree = {"boule", "oule","moule","roule","carticle","chimpanze","soupe"};
         Arrays.sort(entree);
         Arborescence test = new Arborescence();
         test.CreerArbo(entree);
@@ -15,8 +15,8 @@ public class Main {
         LinkedList<Integer> queue = new LinkedList<Integer>();
         Failure fail = new Failure(test,queue);
         fail.creer_fail();
-        fail.afficher_fail();
         fail.creer_delta();
+        test.afficherArbo();
         String texte = null;
         try {
             texte = utils.readFile("7germ10.txt", StandardCharsets.UTF_8);
@@ -25,5 +25,6 @@ public class Main {
         }
         Lecture lect = new Lecture(test,fail);
         lect.Lire(texte);
+
     }
 }

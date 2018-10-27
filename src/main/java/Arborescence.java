@@ -1,3 +1,9 @@
+/**
+ * L'arborescence a une matrice CommandeTab de taille maxState*maxChar
+ * CommandeTab représente l'automate sous forme CommandeTab[EtatActuel][CaractèreSuivant] = EtatSuivant
+ *
+ * Le tableau output[maxState] contient les mots trouvés pour chaque état
+ */
 public class Arborescence {
 
     static int maxChar = 130;
@@ -6,19 +12,28 @@ public class Arborescence {
     int CommandeTab[][]= new int [maxState][maxChar];
     String output[] = new String[maxState];
 
-    public void initialisation_tab(int tab[][]) {
 
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                tab[i][j] = -1;
+    /**
+     * Initialise toutes les cases de la matrice à "val"
+     * @param mat la matrice
+     * @param val la valeur
+     */
+    public void initialisation_mat(int mat[][], int val) {
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[i].length; j++) {
+                mat[i][j] = val;
             }
         }
     }
 
     public Arborescence(){
-        initialisation_tab(CommandeTab);
+        initialisation_mat(CommandeTab, -1);
     }
 
+    /**
+     * Rempli CommandeTab afin de créer l'automate
+     * @param Mots : Mots clés à trouver
+     */
     public void CreerArbo(String [] Mots){
         int newState = 0;
         for(int i=0;i<Mots.length;i++)
@@ -46,6 +61,9 @@ public class Arborescence {
         return newState;
     }
 
+    /**
+     * Affiche la matrice CommandeTab/l'automate
+     */
     public void afficherArbo(){
         for(int i=0;i<this.CommandeTab.length;i++){
             for(int j=0;j<this.CommandeTab[i].length;j++){
