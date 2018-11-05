@@ -10,6 +10,7 @@
         <module name="AhoCorasickOriginal" />
         <module name="AhoCorasickOriginal2" />
         <module name="AhoCorasickOriginal3" />
+        <module name="AhoCorasickOriginal55" />
       </profile>
     </annotationProcessing>
   </component>

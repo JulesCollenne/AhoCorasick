@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] entree = {"boule", "oule","moule","roule","carticle","chimpanze","soupe"};
+        String[] entree = {"boule", "oignon","moule","bonjour","Paris","soupe","Salutation","non","pourquoi","si","biensur","d'accord"};
         Arrays.sort(entree);
         Arborescence test = new Arborescence();
         test.CreerArbo(entree);
@@ -24,7 +24,10 @@ public class Main {
             e.printStackTrace();
         }
         Lecture lect = new Lecture(test,fail);
+        long startTime = System.nanoTime();
         lect.Lire(texte);
-
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime)/1000000;
+        System.out.println("Temps d'execution de la lecture : "+duration+" millisecondes");
     }
 }
